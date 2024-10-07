@@ -1,0 +1,4 @@
+name: KnockOnDoors
+version: '1.0'
+main: net.civicraft.knockOnDoors.KnockOnDoors
+api-version: '1.21'
