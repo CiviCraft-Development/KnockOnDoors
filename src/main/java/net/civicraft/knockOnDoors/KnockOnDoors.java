@@ -9,6 +9,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Set;
+
 public final class KnockOnDoors extends JavaPlugin implements Listener {
 
     @Override
@@ -24,15 +26,12 @@ public final class KnockOnDoors extends JavaPlugin implements Listener {
                 Block c = e.getClickedBlock();
                 if (c != null) {
                     String type = c.getType().toString();
-                    String[] doorTypes = {"OAK_DOOR", "BIRCH_DOOR", "SPRUCE_DOOR", "JUNGLE_DOOR", "ACACIA_DOOR", "DARK_OAK_DOOR", "IRON_DOOR", "WARPED_DOOR", "CRIMSON_DOOR"};
-                    for (String doorType : doorTypes) {
-                        if (type.equalsIgnoreCase(doorType)) {
-                            p.playSound(p.getLocation(), Sound.ENTITY_ARMOR_STAND_PLACE, 1.0f, 1.0f);
-                            break;
-                        } else if (type.equalsIgnoreCase("IRON_DOOR")) {
-                            p.playSound(p.getLocation(), Sound.BLOCK_NETHERITE_BLOCK_PLACE, 1.0f, 1.0f);
-                            break;
-                        }
+                    Set<String> woodenDoors = Set.of("OAK_DOOR", "BIRCH_DOOR", "SPRUCE_DOOR", "JUNGLE_DOOR", "ACACIA_DOOR", "DARK_OAK_DOOR", "WARPED_DOOR", "CRIMSON_DOOR", "MANGROVE_DOOR", "CHERRY_DOOR", "BAMBOO_DOOR");
+                    Set<String> metallicDoors = Set.of("IRON_DOOR", "COPPER_DOOR", "OXIDIZED_COPPER_DOOR", "EXPOSED_COPPER_DOOR", "WEATHERED_COPPER_DOOR", "WAXED_COPPER_DOOR", "WAXED_EXPOSED_COPPER_DOOR", "WAXED_WEATHERED_COPPER_DOOR", "WAXED_OXIDIZED_COPPER_DOOR");
+                    if (woodenDoors.contains(type.toUpperCase())) {
+                        p.playSound(p.getLocation(), Sound.ENTITY_ARMOR_STAND_PLACE, 1.0f, 1.0f);
+                    } else if (metallicDoors.contains(type.toUpperCase())) {
+                        p.playSound(p.getLocation(), Sound.BLOCK_NETHERITE_BLOCK_PLACE, 1.0f, 1.0f);
                     }
                 }
         }
