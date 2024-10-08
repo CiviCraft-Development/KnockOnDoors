@@ -21,7 +21,6 @@ public final class KnockOnDoors extends JavaPlugin implements Listener {
     public void onDoorKnock(PlayerInteractEvent e) {
         if (e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             Player p = e.getPlayer();
-            if (p.isSneaking()) {
                 Block c = e.getClickedBlock();
                 if (c != null) {
                     String type = c.getType().toString();
@@ -36,7 +35,6 @@ public final class KnockOnDoors extends JavaPlugin implements Listener {
                         }
                     }
                 }
-            }
         }
     }
 
